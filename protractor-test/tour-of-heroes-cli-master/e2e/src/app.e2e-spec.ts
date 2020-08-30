@@ -171,46 +171,6 @@ describe('Proyecto base', () => {
       // expect(page.selectedHeroSubview.isPresent()).toBeFalsy();
     });
 
-    it(`adds back ${targetHero.name}`, async () => {
-      const addedHeroName = 'Alice';
-      const heroesBefore = await toHeroArray(getPageElts().allHeroes);
-      const numHeroes = heroesBefore.length;
-
-      element(by.css('input')).sendKeys(addedHeroName);
-      element(by.buttonText('add')).click();
-
-      const page = getPageElts();
-      const heroesAfter = await toHeroArray(page.allHeroes);
-      expect(heroesAfter.length).toEqual(numHeroes + 1, 'number of heroes');
-
-      expect(heroesAfter.slice(0, numHeroes)).toEqual(heroesBefore, 'Old heroes are still there');
-
-      const maxId = heroesBefore[heroesBefore.length - 1].id;
-      expect(heroesAfter[numHeroes]).toEqual({id: maxId + 1, name: addedHeroName});
-    });
-
-    it('displays correctly styled buttons', async () => {
-      element.all(by.buttonText('x')).then(buttons => {
-        for (const button of buttons) {
-          // Inherited styles from styles.css
-          expect(button.getCssValue('font-family')).toBe('Arial');
-          expect(button.getCssValue('border')).toContain('none');
-          expect(button.getCssValue('padding')).toBe('5px 10px');
-          expect(button.getCssValue('border-radius')).toBe('4px');
-          // Styles defined in heroes.component.css
-          expect(button.getCssValue('left')).toBe('194px');
-          expect(button.getCssValue('top')).toBe('-32px');
-        }
-      });
-
-      const addButton = element(by.buttonText('add'));
-      // Inherited styles from styles.css
-      expect(addButton.getCssValue('font-family')).toBe('Arial');
-      expect(addButton.getCssValue('border')).toContain('none');
-      expect(addButton.getCssValue('padding')).toBe('5px 10px');
-      expect(addButton.getCssValue('border-radius')).toBe('4px');
-    });
-
   });
 
   describe('Progressive hero search', () => {
