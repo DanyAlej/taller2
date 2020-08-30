@@ -42,7 +42,7 @@ class Hero {
   }
 }
 
-describe('Tutorial part 6', () => {
+describe('Proyecto base', () => {
 
   beforeAll(() => browser.get(''));
 
