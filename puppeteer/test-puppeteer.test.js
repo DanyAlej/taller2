@@ -41,7 +41,7 @@ describe("Probar punto 3 con Puppeteer", () => {
             });
         });
 
-        expect(await page.$eval('div[class="alert alert-success"]', e => e.textContent)).toEqual('Registration successful')
+        expect(await page.$eval('div[class="alert alert-dismissable alert-success container mt-4"] > span', e => e.textContent)).toEqual('Registration successful')
 
 
     }, timeout);
@@ -61,15 +61,5 @@ describe("Probar punto 3 con Puppeteer", () => {
 
     }, timeout);
 
-    test("Boton cancelar retorna al login", async () => {
-
-        await page.goto(URL);
-        await page.click('a[class="btn btn-link"]')
-
-        expect(await page.$eval('h2', e => e.textContent)).toEqual('Login')
-
-
-    }, timeout);
-
-
+    
 });
