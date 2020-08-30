@@ -1,3 +1,15 @@
+context('Registering with existing username', () => {
+
+  it('makes a correct login attemp', () => {
+    cy.visit('https://habitica.com/static/home')
+    cy.get('#usernameInput').type('danyalej').should('have.value', 'danyalej');
+    cy.get('[type="email"]').type('da.benavides@uniandes.edu.co', 'da.benavides@uniandes.edu.co')
+    cy.get('[placeholder="Password"]').type('secretpassword');
+    cy.get('[placeholder="Confirm Password"]').type('secretpassword');
+    cy.get('.form > .btn').click();
+  })
+});
+
 context('Login Tests', () => {
 
   it('makes a correct login attemp', () => {
